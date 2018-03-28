@@ -1,13 +1,14 @@
 import string
 import contractions
+import io
 from gutenberg.acquire import load_etext
 from gutenberg.cleanup import strip_headers
 
-book = strip_headers(load_etext(2701)).strip()
-print(book)
+#book = strip_headers(load_etext(2701)).strip()
+#print(book)
 
 # load text
-filename = '11-0.txt'
+filename = 'songs-input.txt'
 file = open(filename, encoding="utf8")
 text = file.read()
 file.close()
@@ -24,4 +25,9 @@ table = str.maketrans('', '', '`~!@#$%^&*()-_=+[]{}\|:;"<>?/‘’“”©⌐™
 stripped = [w.translate(table) for w in words]
 # convert to lower case
 stripped = [word.lower() for word in stripped]
-print(stripped[:100])
+print(stripped[:200])
+
+#write to file
+thefile = open('lyrics-cleaned.txt','w',encoding="utf8")
+for item in stripped:
+  thefile.write(" " + item)
